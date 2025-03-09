@@ -1,9 +1,12 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
+  const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
+
   const products = [
     {
       id: 1,
@@ -118,7 +121,15 @@ const ShopContextProvider = (props) => {
     },
   ];
 
-  const value = { products, currency, delivery_fee };
+  const value = {
+    products,
+    currency,
+    delivery_fee,
+    search,
+    setSearch,
+    showSearch,
+    setShowSearch,
+  };
 
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>

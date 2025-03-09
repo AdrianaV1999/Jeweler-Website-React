@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { UserIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-
+  const { setShowSearch } = useContext(ShopContext);
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
@@ -33,7 +34,10 @@ const Navbar = () => {
         </NavLink>
       </ul>
       <div className="flex items-center gap-6">
-        <MagnifyingGlassIcon className="w-5 cursor-pointer text-gray-700" />
+        <MagnifyingGlassIcon
+          className="w-5 cursor-pointer text-gray-700"
+          onClick={() => setShowSearch((prev) => !prev)}
+        />
         <div className="group relative">
           <UserIcon className="w-5 cursor-pointer text-gray-700" />
           <div className="group-hover:block hidden absolute right-0 pt-4">
